@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片浏览器</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border: 2px solid #333;
+        }
+        .navbar {
+            margin: 20px;
+        }
+        .navbar button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>图片浏览器</h1>
+    <div class="navbar">
+        <button onclick="prevImage()">上一张</button>
+        <button onclick="nextImage()">下一张</button>
+    </div>
+    <img id="image" src="https://via.placeholder.com/600x400" alt="图片">
+
+    <script>
+        const images = [
+            "https://via.placeholder.com/600x400?text=图片1",
+            "https://via.placeholder.com/600x400?text=图片2",
+            "https://via.placeholder.com/600x400?text=图片3"
+        ];
+        let currentIndex = 0;
+
+        function updateImage() {
+            const imgElement = document.getElementById("image");
+            imgElement.src = images[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            updateImage();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            updateImage();
+        }
+    </script>
+
+</body>
+</html>
